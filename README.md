@@ -11,13 +11,14 @@ systemctl restart docker
 ###
 
 systemctl stop docker
-wget -P /etc/default/docker https://raw.githubusercontent.com/remonlam/docker-swarm/master/docker
+rm -rf /lib/systemd/system/docker.service
+wget -P /etc/default https://raw.githubusercontent.com/remonlam/docker-swarm/master/docker
 wget -P /lib/systemd/system/ https://raw.githubusercontent.com/remonlam/docker-swarm/master/docker.service
 systemctl daemon-reload
 systemctl start docker
 docker info
-
 systemctl enable docker
+systemctl status docker
 
 
 docker -H tcp://127.0.0.1:2375 info
